@@ -23,12 +23,12 @@
 + Loanee : Person
 	+ int ID
 	+ string Name
+	+ List BorrowedBooks
 
 + Person
 	+ string Name
 	+ string Email
-	+ List BorrowedBooks
-
+	
 + Book
 	+ string Title
 	+ string Author

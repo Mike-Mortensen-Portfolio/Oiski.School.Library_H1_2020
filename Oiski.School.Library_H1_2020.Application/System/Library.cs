@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using Oiski.School.Library_H1_2020.System.Items;
 using Oiski.School.Library_H1_2020.Users;
@@ -28,6 +30,7 @@ namespace Oiski.School.Library_H1_2020.System
         public string Name { get; }
         private readonly List<Loanee> loanees = new List<Loanee>();
         private readonly List<Book> books = new List<Book>();
+        private readonly string path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
         /// <summary>
         /// 
@@ -271,6 +274,33 @@ namespace Oiski.School.Library_H1_2020.System
         public IReadOnlyList<Book> GetBooksByStatus(bool _isBorrowed)
         {
             return books.Where(item => item.IsBorrowed == _isBorrowed) as IReadOnlyList<Book>;
+        }
+
+        /// <summary>
+        /// Saves the current state of the <see cref="Library"/> instance.
+        /// </summary>
+        /// <returns><see langword="true"/> if the state was saved succesfully; Otherwise <see langword="false"/></returns>
+        public bool SaveState()
+        {
+            XMLIO.SerializeXML(this, $"{path}\\Library");
+
+            return File.Exists($"{path}\\Library.xml");
+        }
+
+        /// <summary>
+        /// Loads the previous state of the <see cref="Library"/> instance
+        /// </summary>
+        /// <returns><see langword="true"/> if the state was succesfully loaded; Otherwise <see langword="false"/></returns>
+        public bool LoadState()
+        {
+            if ( File.Exists($"{path}\\Library.xml") )
+            {
+                instance = XMLIO.DeserializeXML<Library>($"{path}\\Library");
+
+                return true;
+            }
+
+            return false;
         }
 
         /// <summary>

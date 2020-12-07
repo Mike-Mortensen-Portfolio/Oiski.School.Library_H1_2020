@@ -1,0 +1,65 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using Oiski.ConsoleTech.Engine;
+using Oiski.ConsoleTech.Engine.Color.Controls;
+using Oiski.ConsoleTech.Engine.Color.Rendering;
+using Oiski.ConsoleTech.Engine.Controls;
+
+namespace Oiski.School.Library_H1_2020.UI
+{
+    /// <summary>
+    /// Defines the main entry point for an application
+    /// </summary>
+    public class MainMenu : MasterMenu
+    {
+        /// <summary>
+        /// The action that is applied when a user selects the loanee button
+        /// </summary>
+        public Action<SelectableControl> LoaneesButtonAction { get; set; }
+        /// <summary>
+        /// The action that is applied when a user selects the books button 
+        /// </summary>
+        public Action<SelectableControl> BookButtonAction { get; set; }
+
+        public override void InitMenu ()
+        {
+            base.InitMenu();
+            #region Loanees Button
+            ColorableOption loaneesButton = new ColorableOption("Loanees", ControlsFontColor, ControlsBorderColor, false);
+            loaneesButton.Position = new Vector2(Vector2.CenterX(loaneesButton.Size.x), GetMenu.Controls[0].Position.y + 5);
+            loaneesButton.SelectedIndex = Vector2.Zero;
+            loaneesButton.BorderStyle(BorderArea.Horizontal, '~');
+            loaneesButton.OnSelect += LoaneesButtonAction;
+            GetMenu.Controls.AddControl(loaneesButton);
+            #endregion
+
+            #region Books Button
+            ColorableOption booksButton = new ColorableOption("Books", ControlsFontColor, ControlsBorderColor, false);
+            booksButton.Position = new Vector2(Vector2.CenterX(booksButton.Size.x), loaneesButton.Position.y + 3);
+            booksButton.SelectedIndex = new Vector2(0, 1);
+            booksButton.OnSelect += BookButtonAction;
+            GetMenu.Controls.AddControl(booksButton);
+            #endregion
+
+            #region Nav Button Setup
+            NavButtonAction = (s) =>
+            {
+                Environment.Exit(0);
+            };
+
+            SetupNavButton();
+            #endregion
+        }
+
+        /// <summary>
+        /// Create a new instance of type <see cref="MainMenu"/> where the <paramref name="_headerText"/> and <paramref name="_headerPosY"/> is set
+        /// </summary>
+        /// <param name="_headerText"></param>
+        /// <param name="_headerPosY"></param>
+        public MainMenu (string _headerText, int _headerPosY) : base(_headerText, _headerPosY, "Close")
+        {
+
+        }
+    }
+}

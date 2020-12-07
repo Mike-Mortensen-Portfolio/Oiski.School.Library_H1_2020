@@ -13,6 +13,35 @@ namespace Oiski.School.Library_H1_2020.UI
     /// </summary>
     public class MainMenu : MasterMenu
     {
+        private static MainMenu instance = null;
+        public static MainMenu Instance
+        {
+            get
+            {
+                if ( instance == null )
+                {
+                    instance = new MainMenu("-----Oiski's Library-----", 15)
+                    {
+                        LoaneesButtonAction = (s) =>
+                        {
+                            LoaneesMenu.Instance.GetMenu.Show();
+                            Instance.ResetSelection();
+                            Instance.GetMenu.Show(false);
+                        },
+
+                        BookButtonAction = (s) =>
+                        {
+                            throw new NotImplementedException("Missing Navigation class for Books Menu!");
+                        }
+                    };
+
+                    instance.InitMenu();
+                }
+
+                return instance;
+            }
+        }
+
         /// <summary>
         /// The action that is applied when a user selects the loanee button
         /// </summary>
@@ -27,7 +56,7 @@ namespace Oiski.School.Library_H1_2020.UI
             base.InitMenu();
             #region Loanees Button
             ColorableOption loaneesButton = new ColorableOption("Loanees", ControlsFontColor, ControlsBorderColor, false);
-            loaneesButton.Position = new Vector2(Vector2.CenterX(loaneesButton.Size.x), GetMenu.Controls[0].Position.y + 5);
+            loaneesButton.Position = new Vector2(Vector2.CenterX(loaneesButton.Size.x), HeaderPosY + HeaderOffset);
             loaneesButton.SelectedIndex = Vector2.Zero;
             loaneesButton.BorderStyle(BorderArea.Horizontal, '~');
             loaneesButton.OnSelect += LoaneesButtonAction;
@@ -57,7 +86,7 @@ namespace Oiski.School.Library_H1_2020.UI
         /// </summary>
         /// <param name="_headerText"></param>
         /// <param name="_headerPosY"></param>
-        public MainMenu (string _headerText, int _headerPosY) : base(_headerText, _headerPosY, "Close")
+        private MainMenu (string _headerText, int _headerPosY) : base(_headerText, _headerPosY, "Close")
         {
 
         }

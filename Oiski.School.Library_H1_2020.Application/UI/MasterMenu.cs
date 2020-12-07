@@ -21,14 +21,16 @@ namespace Oiski.School.Library_H1_2020.UI
         /// </summary>
         protected int NavButtonID { get; private set; }
 
+        public int HeaderOffset { get; set; } = 5;
+
         /// <summary>
         /// The <see cref="RenderColor"/> that is applied as border color for <see cref="Control"/>s
         /// </summary>
-        public RenderColor ControlsBorderColor { get; set; } = new RenderColor(ConsoleColor.Cyan, ConsoleColor.Black);
+        public RenderColor ControlsBorderColor { get; set; } = new RenderColor(ConsoleColor.DarkBlue, ConsoleColor.Black);
         /// <summary>
         /// THe <see cref="RenderColor"/> that is applied as font color for <see cref="Control"/>s
         /// </summary>
-        public RenderColor ControlsFontColor { get; set; } = new RenderColor(ConsoleColor.DarkBlue, ConsoleColor.Black);
+        public RenderColor ControlsFontColor { get; set; } = new RenderColor(ConsoleColor.Cyan, ConsoleColor.Black);
 
         /// <summary>
         /// The <see cref="Menu"/> <see cref="Control"/> that contains the <see cref="ControlCollection"/>
@@ -69,6 +71,22 @@ namespace Oiski.School.Library_H1_2020.UI
                 navButton.OnSelect += NavButtonAction;
             }
 
+        }
+
+        /// <summary>
+        /// Resets the current selection and sets the <see cref="SelectableControl"/> at <see cref="Vector2.Zero"/> to be selected.
+        /// </summary>
+        protected void ResetSelection ()
+        {
+            GetMenu.Controls.FindControl(Vector2.Zero).BorderStyle(BorderArea.Horizontal, '~');
+
+            if ( OiskiEngine.Input.GetSelectedIndex != Vector2.Zero )
+            {
+                SelectableControl control = GetMenu.Controls.FindControl(OiskiEngine.Input.GetSelectedIndex);
+                control.BorderStyle(BorderArea.Horizontal, '-');
+            }
+           
+            OiskiEngine.Input.ResetSlection();
         }
 
         /// <summary>

@@ -22,22 +22,7 @@ namespace Oiski.School.Library_H1_2020.Application
             OiskiEngine.Run();
             #endregion
 
-            #region Main Manu Setup
-            MainMenu main = new MainMenu("Oiski's Library", 15);
-
-            main.LoaneesButtonAction = (s) =>
-            {
-                throw new NotImplementedException("Missing Navigation class for Loanees Menu!");
-            };
-
-            main.BookButtonAction = (s) =>
-            {
-                throw new NotImplementedException("Missing Navigation class for Books Menu!");
-            };
-
-            main.InitMenu();
-            main.GetMenu.Show();
-            #endregion
+            MainMenu.Instance.GetMenu.Show();
         }
     }
 }

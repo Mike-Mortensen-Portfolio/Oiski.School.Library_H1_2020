@@ -15,8 +15,21 @@ namespace Oiski.School.Library_H1_2020.System.Items
         /// The unique ID for the <see cref="Book"/>
         /// </summary>
         public string ISBNCode { get; }
-        public string Category { get; set; }
-        public bool IsBorrowed { get; set; }
+        public string Category { get; set; } = string.Empty;
+        public bool IsBorrowed { get; set; } = false;
         public DateTime DateOfLending { get; set; }
+
+        /// <summary>
+        /// Creates a new instance of type <see cref="Book"/> where <paramref name="_title"/>, <paramref name="_author"/> and <paramref name="_isbnCode"/> is set
+        /// </summary>
+        /// <param name="_title"></param>
+        /// <param name="_author"></param>
+        /// <param name="_isbnCode"></param>
+        public Book(string _title, string _author, string _isbnCode)
+        {
+            Title = _title;
+            Author = _author;
+            ISBNCode = _isbnCode;
+        }
     }
 }

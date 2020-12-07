@@ -107,16 +107,35 @@ namespace Oiski.School.Library_H1_2020.System
             return loanees.Find(item => item.Email.ToLower() == _email.ToLower());
         }
 
+        /// <summary>
+        /// Create a new <see cref="Book"/> instance where the title, author and isbnCode is set
+        /// </summary>
+        /// <param name="_title"></param>
+        /// <param name="_author"></param>
+        /// <param name="_isbnCode"></param>
+        /// <param name="_book">The newly created <see cref="Book"/> instance</param>
+        /// <returns><see langword="true"/> if the <see cref="Book"/> could be created; Otherwise <see langword="false"/></returns>
         public bool CreateBook(string _title, string _author, string _isbnCode, out Book _book)
         {
             if ( GetBook(_isbnCode) != null )
             {
-                books.Add(new Book(_title, _author, _isbnCode));
+                _book = new Book(_title, _author, _isbnCode);
+                books.Add(_book);
                 return true;
             }
 
+            _book = null;
             return false;
         }
+        /// <summary>
+        /// Create a new <see cref="Book"/> instance where the title, author, category and isbnCode is set
+        /// </summary>
+        /// <param name="_title"></param>
+        /// <param name="_author"></param>
+        /// <param name="_category"></param>
+        /// <param name="_isbnCode"></param>
+        /// <param name="_book">The newly created <see cref="Book"/> instance</param>
+        /// <returns><see langword="true"/> if the <see cref="Book"/> could be created; Otherwise <see langword="false"/></returns>
         public bool CreateBook(string _title, string _author, string _category, string _isbnCode, out Book _book)
         {
             if ( CreateBook(_title, _author, _isbnCode, out _book) )
@@ -129,9 +148,21 @@ namespace Oiski.School.Library_H1_2020.System
             return false;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="_isbnCode"></param>
+        /// <returns><see langword="true"/> if the <see cref="Book"/> could be removed; Otherwise <see langword="false"/></returns>
         public bool RemoveBook(string _isbnCode)
         {
+            Book book = GetBook(_isbnCode);
 
+            if ( book != null )
+            {
+                return books.Remove(book);
+            }
+
+            return false;
         }
 
         /// <summary>
@@ -141,7 +172,15 @@ namespace Oiski.School.Library_H1_2020.System
         /// <returns><see langword="true"/> if the book could be borrowed; Otherwise <see langword="false"/></returns>
         public bool BorrowBook(string _isbnCode)
         {
-            throw new NotImplementedException();
+            Book book = GetBook(_isbnCode);
+            if ( book != null )
+            {
+                book.IsBorrowed = true;
+                book.DateOfLending = DateTime.Now;
+                return true;
+            }
+
+            return false;
         }
 
         /// <summary>
@@ -161,7 +200,17 @@ namespace Oiski.School.Library_H1_2020.System
         /// <returns><see langword="true"/> if the book could be returned; Otherwise <see langword="false"/></returns>
         public bool ReturnBook(string _isbnCode)
         {
-            throw new NotImplementedException();
+            Book book = GetBook(_isbnCode);
+
+            if ( book != null && book.IsBorrowed )
+            {
+                book.IsBorrowed = false;
+                book.DateOfLending = new DateTime();
+
+                return true;
+            }
+
+            return false;
         }
 
         /// <summary>

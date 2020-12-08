@@ -1,14 +1,15 @@
 ﻿using Oiski.ConsoleTech.Engine;
 using Oiski.ConsoleTech.Engine.Color.Rendering;
 using Oiski.ConsoleTech.Engine.Color.Controls;
-using Oiski.School.Library_H1_2020.UI;
+using Oiski.School.Library_H1_2020.Application.UI;
 using System;
+using Oiski.School.Library_H1_2020.Application.System;
 
 namespace Oiski.School.Library_H1_2020.Application
 {
     class Program
     {
-        static void Main (string[] args)
+        static void Main()
         {
             #region Inital Setup of Console Window and Engine
             Console.SetWindowSize(100, 50);

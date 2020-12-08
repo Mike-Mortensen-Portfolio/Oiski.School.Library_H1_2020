@@ -6,7 +6,7 @@ using Oiski.ConsoleTech.Engine.Color.Controls;
 using Oiski.ConsoleTech.Engine.Color.Rendering;
 using Oiski.ConsoleTech.Engine.Controls;
 
-namespace Oiski.School.Library_H1_2020.UI
+namespace Oiski.School.Library_H1_2020.Application.UI
 {
     /// <summary>
     /// Defines the main entry point for an application

@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Oiski.School.Library_H1_2020.UI
+namespace Oiski.School.Library_H1_2020.Application.UI
 {
     public class LoaneesMenu : MasterMenu
     {

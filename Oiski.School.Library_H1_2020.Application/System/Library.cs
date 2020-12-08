@@ -4,10 +4,10 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using Oiski.School.Library_H1_2020.System.Items;
-using Oiski.School.Library_H1_2020.Users;
+using Oiski.School.Library_H1_2020.Application.System.Items;
+using Oiski.School.Library_H1_2020.Application.Users;
 
-namespace Oiski.School.Library_H1_2020.System
+namespace Oiski.School.Library_H1_2020.Application.System
 {
     /// <summary>
     /// Defines a library instance that can store and manipulate items
@@ -49,7 +49,7 @@ namespace Oiski.School.Library_H1_2020.System
         /// <returns><see langword="true"/> if a <see cref="Loanee"/> with the same <paramref name="_email"/> does <strong>not</strong> already exist; Otherwise <see langword="false"/></returns>
         public bool CreateLoanee(string _name, string _email)
         {
-            if ( loanees.Find(item => item.Email.ToLower() == _email.ToLower()) != null )
+            if ( loanees.Find(item => item.Email.ToLower() == _email.ToLower()) == null )
             {
                 loanees.Add(new Loanee(_name, _email));
                 return true;

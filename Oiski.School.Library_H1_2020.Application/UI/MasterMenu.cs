@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Text;
 using Oiski.ConsoleTech.Engine;
 
-namespace Oiski.School.Library_H1_2020.UI
+namespace Oiski.School.Library_H1_2020.Application.UI
 {
     /// <summary>
     /// The master class for all menues. This is meant to be the foundation for a menu heirachy

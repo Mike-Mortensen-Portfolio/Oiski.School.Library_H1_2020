@@ -39,11 +39,11 @@ namespace Oiski.School.Library_H1_2020.Application.UI
         /// <summary>
         /// The action that is applied when a user selects the loanee button
         /// </summary>
-        public Action<SelectableControl> LoaneeButtonAction { get; set; }
+        public Action<SelectableControl> LoaneeButtonAction { get; private set; }
         /// <summary>
         /// The action that is appliedd when a user selects the find loanee button
         /// </summary>
-        public Action<SelectableControl> FindLoaneeButton { get; set; }
+        public Action<SelectableControl> FindLoaneeButton { get; private set; }
 
         public override void InitMenu ()
         {

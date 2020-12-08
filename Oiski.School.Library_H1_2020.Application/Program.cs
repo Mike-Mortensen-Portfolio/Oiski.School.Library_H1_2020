@@ -9,7 +9,7 @@ namespace Oiski.School.Library_H1_2020.Application
 {
     class Program
     {
-        static void Main()
+        static void Main ()
         {
             #region Inital Setup of Console Window and Engine
             Console.SetWindowSize(100, 50);
@@ -23,12 +23,7 @@ namespace Oiski.School.Library_H1_2020.Application
             OiskiEngine.Run();
             #endregion
 
-            //MainMenu.Instance.GetMenu.Show();
-
-            LoaneeItemMenu menu = new LoaneeItemMenu(0, 15);
-            menu.InitMenu();
-
-            menu.GetMenu.Show();
+            MainMenu.Instance.GetMenu.Show();
         }
     }
 }

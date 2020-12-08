@@ -45,11 +45,11 @@ namespace Oiski.School.Library_H1_2020.Application.UI
         /// <summary>
         /// The action that is applied when a user selects the loanee button
         /// </summary>
-        public Action<SelectableControl> LoaneesButtonAction { get; set; }
+        public Action<SelectableControl> LoaneesButtonAction { get; private set; }
         /// <summary>
         /// The action that is applied when a user selects the books button 
         /// </summary>
-        public Action<SelectableControl> BookButtonAction { get; set; }
+        public Action<SelectableControl> BookButtonAction { get; private set; }
 
         public override void InitMenu ()
         {

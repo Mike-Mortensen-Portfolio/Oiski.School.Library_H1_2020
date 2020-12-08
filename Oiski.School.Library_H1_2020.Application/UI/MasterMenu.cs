@@ -13,6 +13,7 @@ namespace Oiski.School.Library_H1_2020.Application.UI
     /// </summary>
     public class MasterMenu
     {
+        protected ColorableLabel Header { get; private set; }
         protected string HeaderText { get; }
         protected int HeaderPosY { get; }
         protected string NavButtonText { get; }
@@ -45,9 +46,9 @@ namespace Oiski.School.Library_H1_2020.Application.UI
         public virtual void InitMenu ()
         {
             #region Header Setup
-            ColorableLabel header = new ColorableLabel(HeaderText, ControlsFontColor, ControlsBorderColor, false);
-            header.Position = new Vector2(Vector2.CenterX(header.Size.x), HeaderPosY);
-            GetMenu.Controls.AddControl(header);
+            Header = new ColorableLabel(HeaderText, ControlsFontColor, ControlsBorderColor, false);
+            Header.Position = new Vector2(Vector2.CenterX(Header.Size.x), HeaderPosY);
+            GetMenu.Controls.AddControl(Header);
             #endregion
 
             #region Nav Button Setup
@@ -85,7 +86,7 @@ namespace Oiski.School.Library_H1_2020.Application.UI
                 SelectableControl control = GetMenu.Controls.FindControl(OiskiEngine.Input.GetSelectedIndex);
                 control.BorderStyle(BorderArea.Horizontal, '-');
             }
-           
+
             OiskiEngine.Input.ResetSlection();
         }
 

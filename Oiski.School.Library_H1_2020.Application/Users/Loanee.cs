@@ -24,7 +24,7 @@ namespace Oiski.School.Library_H1_2020.Application.Users
         /// <param name="_email"></param>
         public Loanee (string _name, string _email) : base(_name, _email)
         {
-            ID = ++IDMod;
+            ID = IDMod++;
         }
 
         /// <summary>

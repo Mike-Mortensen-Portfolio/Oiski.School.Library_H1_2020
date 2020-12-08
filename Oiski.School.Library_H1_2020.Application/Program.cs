@@ -23,7 +23,12 @@ namespace Oiski.School.Library_H1_2020.Application
             OiskiEngine.Run();
             #endregion
 
-            MainMenu.Instance.GetMenu.Show();
+            //MainMenu.Instance.GetMenu.Show();
+
+            LoaneeItemMenu menu = new LoaneeItemMenu(0, 15);
+            menu.InitMenu();
+
+            menu.GetMenu.Show();
         }
     }
 }

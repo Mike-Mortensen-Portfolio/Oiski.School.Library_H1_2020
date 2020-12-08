@@ -15,15 +15,31 @@ namespace Oiski.School.Library_H1_2020.Application.UI
     public class LoaneeItemMenu : ItemMenu
     {
 
+        private static LoaneeItemMenu instance = null;
+        public static LoaneeItemMenu Instance
+        {
+            get
+            {
+                if ( instance == null )
+                {
+                    instance = new LoaneeItemMenu(15);
+                    instance.InitMenu();
+                }
+
+                return instance;
+            }
+        }
+
         public override void InitMenu()
         {
             base.InitMenu();
 
-            ResetSelection();
             #region ID Setup
             ColorableLabel idLabel = new ColorableLabel("ID", ControlsFontColor, ControlsBorderColor, false);
 
-            ColorableLabel idText = new ColorableLabel(string.Format("{0,6}", Library.GetLibrary.GetLoanee(CurrentItemID).ID), ControlsFontColor, ControlsBorderColor, false);
+            string id = ( ( Library.GetLibrary.GetLoanee(CurrentItemID) != null ) ? ( Library.GetLibrary.GetLoanee(CurrentItemID).ID.ToString() ) : ( "Error" ) );
+
+            ColorableLabel idText = new ColorableLabel(string.Format("{0,6}", id), ControlsFontColor, ControlsBorderColor, false);
 
             idLabel.Position = new Vector2(Vector2.CenterX(idLabel.Size.x + idText.Size.x), HeaderPosY + HeaderOffset);
             idText.Position = new Vector2(idLabel.Position.x + idLabel.Size.x - 1, idLabel.Position.y);
@@ -36,7 +52,9 @@ namespace Oiski.School.Library_H1_2020.Application.UI
             #region Email Setup
             ColorableLabel emailLabel = new ColorableLabel("ID", ControlsFontColor, ControlsBorderColor, false);
 
-            ColorableLabel emailText = new ColorableLabel(Library.GetLibrary.GetLoanee(CurrentItemID).Email, ControlsFontColor, ControlsBorderColor, false)
+            string email = ( ( Library.GetLibrary.GetLoanee(CurrentItemID) != null ) ? ( Library.GetLibrary.GetLoanee(CurrentItemID).Email ) : ( "Error" ) );
+
+            ColorableLabel emailText = new ColorableLabel(email, ControlsFontColor, ControlsBorderColor, false)
             {
                 TextColor = new RenderColor(ConsoleColor.Green, ConsoleColor.Black)
             };
@@ -46,6 +64,14 @@ namespace Oiski.School.Library_H1_2020.Application.UI
 
             GetMenu.Controls.AddControl(emailLabel);
             GetMenu.Controls.AddControl(emailText);
+            #endregion
+
+            #region Remove Button Setup
+            ColorableOption removeButton = new ColorableOption("Remove Loanee", ControlsFontColor, ControlsBorderColor, false)
+            {
+                SelectedIndex = Vector2.Zero
+            };
+
             #endregion
 
             #region Nav Button Setup
@@ -58,6 +84,8 @@ namespace Oiski.School.Library_H1_2020.Application.UI
 
             SetupNavButton();
             #endregion
+
+            ResetSelection();
         }
 
         /// <summary>
@@ -65,7 +93,7 @@ namespace Oiski.School.Library_H1_2020.Application.UI
         /// </summary>
         /// <param name="_itemID"></param>
         /// <param name="_headerPosY"></param>
-        public LoaneeItemMenu(int _itemID, int _headerPosY) : base(_itemID, Library.GetLibrary.GetLoanee(_itemID).Name, _headerPosY, "Go Back")
+        public LoaneeItemMenu(int _headerPosY) : base("Empty", _headerPosY, "Go Back")
         {
         }
     }

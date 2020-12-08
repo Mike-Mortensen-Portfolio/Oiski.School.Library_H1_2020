@@ -12,7 +12,7 @@ namespace Oiski.School.Library_H1_2020.Application.UI
     /// </summary>
     public abstract class ItemMenu : MasterMenu
     {
-        public int CurrentItemID { get; }
+        public int CurrentItemID { get; set; }
 
         /// <summary>
         /// Creates a new instance of type <see cref="ItemMenu"/> where <paramref name="_itemID"/>, <paramref name="_headerText"/>, <paramref name="_headerPosY"/> and <paramref name="_navButtonText"/> is set
@@ -21,9 +21,9 @@ namespace Oiski.School.Library_H1_2020.Application.UI
         /// <param name="_headerText"></param>
         /// <param name="_headerPosY"></param>
         /// <param name="_navButtonText"></param>
-        protected ItemMenu(int _itemID, string _headerText, int _headerPosY, string _navButtonText) : base(_headerText, _headerPosY, _navButtonText)
+        protected ItemMenu(string _headerText, int _headerPosY, string _navButtonText) : base(_headerText, _headerPosY, _navButtonText)
         {
-            CurrentItemID = _itemID;
+
         }
     }
 }

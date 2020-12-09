@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Oiski.School.Library_H1_2020.Application.System.Items;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -10,7 +11,7 @@ namespace Oiski.School.Library_H1_2020.Application.Users
     public class Loanee : Person
     {
         public int ID { get; }
-        //public List<Books> BorrowedBooks {get;}
+        public List<Book> BorrowedBooks { get; } = new List<Book>();
 
         /// <summary>
         /// Represents the ID que for <see cref="Loanee"/>s. This will increment each time a new instance of type <see cref="Loanee"/> is created
@@ -22,7 +23,7 @@ namespace Oiski.School.Library_H1_2020.Application.Users
         /// </summary>
         /// <param name="_name"></param>
         /// <param name="_email"></param>
-        public Loanee (string _name, string _email) : base(_name, _email)
+        public Loanee(string _name, string _email) : base(_name, _email)
         {
             ID = IDMod++;
         }
@@ -31,7 +32,7 @@ namespace Oiski.School.Library_H1_2020.Application.Users
         /// 
         /// </summary>
         /// <returns>A Formated string containing information about the <see cref="Loanee"/></returns>
-        public override string ToString ()
+        public override string ToString()
         {
             return $"{base.ToString()}{Environment.NewLine}{ID}";
         }

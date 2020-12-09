@@ -11,7 +11,7 @@ using System.Text;
 namespace Oiski.School.Library_H1_2020.Application.UI
 {
     /// <summary>
-    /// 
+    /// Defines menu for navigation of <see cref="Loanee"/> items
     /// </summary>
     public class LoaneeItemMenu : ItemMenu
     {
@@ -54,7 +54,7 @@ namespace Oiski.School.Library_H1_2020.Application.UI
         /// <summary>
         /// Initiate the <see cref="Menu"/> <see cref="Control"/>s. (<strong>NOTE:</strong> should only be called once to avoid duplicate <see cref="Control"/>s)
         /// </summary>
-        public override void InitMenu ()
+        public override void InitMenu()
         {
             base.InitMenu();
 
@@ -118,7 +118,7 @@ namespace Oiski.School.Library_H1_2020.Application.UI
         /// <summary>
         /// Refresh the <see cref="Control"/>s contained in the <see cref="Menu"/>
         /// </summary>
-        public void Refresh ()
+        public void Refresh()
         {
             Loanee loanee = Library.GetLibrary.GetLoanee(CurrentItemID);
 
@@ -149,7 +149,7 @@ namespace Oiski.School.Library_H1_2020.Application.UI
         /// </summary>
         /// <param name="_itemID"></param>
         /// <param name="_headerPosY"></param>
-        private LoaneeItemMenu (int _headerPosY) : base("Empty", _headerPosY, "Go Back")
+        private LoaneeItemMenu(int _headerPosY) : base("Empty", _headerPosY, "Go Back")
         {
         }
     }

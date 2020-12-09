@@ -31,7 +31,9 @@ namespace Oiski.School.Library_H1_2020.Application.UI
 
                         BookButtonAction = (s) =>
                         {
-                            throw new NotImplementedException("Missing Navigation class for Books Menu!");
+                            BooksMenu.Instance.GetMenu.Show();
+                            Instance.ResetSelection();
+                            Instance.GetMenu.Show(false);
                         }
                     };
 
@@ -51,7 +53,7 @@ namespace Oiski.School.Library_H1_2020.Application.UI
         /// </summary>
         public Action<SelectableControl> BookButtonAction { get; private set; }
 
-        public override void InitMenu ()
+        public override void InitMenu()
         {
             base.InitMenu();
             #region Loanees Button
@@ -86,7 +88,7 @@ namespace Oiski.School.Library_H1_2020.Application.UI
         /// </summary>
         /// <param name="_headerText"></param>
         /// <param name="_headerPosY"></param>
-        private MainMenu (string _headerText, int _headerPosY) : base(_headerText, _headerPosY, "Close")
+        private MainMenu(string _headerText, int _headerPosY) : base(_headerText, _headerPosY, "Close")
         {
 
         }

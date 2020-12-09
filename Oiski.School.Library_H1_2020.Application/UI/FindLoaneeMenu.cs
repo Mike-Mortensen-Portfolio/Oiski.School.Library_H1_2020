@@ -57,6 +57,7 @@ namespace Oiski.School.Library_H1_2020.Application.UI
                             }
 
                             instance.searchKeyValue.Text = "Type Search key here...";
+                            instance.searchKeyValue.EraseTextOnSelect = true;
                         }
                     };
                     instance.InitMenu();

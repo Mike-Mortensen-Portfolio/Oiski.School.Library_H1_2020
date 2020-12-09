@@ -20,7 +20,9 @@ namespace Oiski.School.Library_H1_2020.Application.UI
                     {
                         BookButtonAction = (s) =>
                         {
-                            throw new NotImplementedException("Missing Navigation class for Book Menu!");
+                            instance.ResetSelection();
+                            CreateBookMenu.Instance.GetMenu.Show();
+                            instance.GetMenu.Show(false);
                         },
 
                         FindBookButton = (s) =>
@@ -45,7 +47,7 @@ namespace Oiski.School.Library_H1_2020.Application.UI
         /// </summary>
         public Action<SelectableControl> FindBookButton { get; private set; }
 
-        public override void InitMenu()
+        public override void InitMenu ()
         {
             base.InitMenu();
 
@@ -87,7 +89,7 @@ namespace Oiski.School.Library_H1_2020.Application.UI
         /// </summary>
         /// <param name="_headerText"></param>
         /// <param name="_headerPosY"></param>
-        private BooksMenu(string _headerText, int _headerPosY) : base(_headerText, _headerPosY, "Go back")
+        private BooksMenu (string _headerText, int _headerPosY) : base(_headerText, _headerPosY, "Go back")
         {
 
         }

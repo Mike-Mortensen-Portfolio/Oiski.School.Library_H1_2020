@@ -25,6 +25,8 @@ namespace Oiski.School.Library_H1_2020.Application
             OiskiEngine.Run();
             #endregion
 
+            //CreateBookMenu.Instance.GetMenu.Show();
+
             MainMenu.Instance.GetMenu.Show();          
         }
     }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Oiski.School.Library_H1_2020.Users
+namespace Oiski.School.Library_H1_2020.Application.Users
 {
     /// <summary>
     /// Defines the base for all users

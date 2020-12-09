@@ -3,7 +3,7 @@ using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace Oiski.School.Library_H1_2020.System
+namespace Oiski.School.Library_H1_2020.Application.System
 {
     /// <summary>
     /// Represents a simple I/O system for handling XML files

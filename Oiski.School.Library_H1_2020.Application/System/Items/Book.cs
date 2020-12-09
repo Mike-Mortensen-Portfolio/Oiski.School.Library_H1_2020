@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Oiski.School.Library_H1_2020.System.Items
+namespace Oiski.School.Library_H1_2020.Application.System.Items
 {
     /// <summary>
     /// Represents a <see cref="Book"/> that can be borrowed

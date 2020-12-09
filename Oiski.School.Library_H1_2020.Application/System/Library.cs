@@ -120,7 +120,7 @@ namespace Oiski.School.Library_H1_2020.Application.System
         /// <returns><see langword="true"/> if the <see cref="Book"/> could be created; Otherwise <see langword="false"/></returns>
         public bool CreateBook(string _title, string _author, string _isbnCode, out Book _book)
         {
-            if ( GetBook(_isbnCode) != null )
+            if ( GetBook(_isbnCode) == null )
             {
                 _book = new Book(_title, _author, _isbnCode);
                 books.Add(_book);

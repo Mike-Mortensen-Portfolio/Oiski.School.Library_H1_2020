@@ -10,9 +10,9 @@ namespace Oiski.School.Library_H1_2020.Application.UI
     /// <summary>
     /// Defines an <see langword="abstract"/> base class for all menues that should target a specific item
     /// </summary>
-    public abstract class ItemMenu : MasterMenu
+    public abstract class ItemMenu<IDType> : MasterMenu
     {
-        public int CurrentItemID { get; set; }
+        public IDType CurrentItemID { get; set; }
 
         /// <summary>
         /// Creates a new instance of type <see cref="ItemMenu"/> where <paramref name="_itemID"/>, <paramref name="_headerText"/>, <paramref name="_headerPosY"/> and <paramref name="_navButtonText"/> is set

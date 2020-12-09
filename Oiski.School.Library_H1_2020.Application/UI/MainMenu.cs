@@ -11,7 +11,7 @@ namespace Oiski.School.Library_H1_2020.Application.UI
     /// <summary>
     /// Defines the main entry point for an application
     /// </summary>
-    public class MainMenu : MasterMenu
+    public sealed class MainMenu : MasterMenu
     {
         private static MainMenu instance = null;
         public static MainMenu Instance

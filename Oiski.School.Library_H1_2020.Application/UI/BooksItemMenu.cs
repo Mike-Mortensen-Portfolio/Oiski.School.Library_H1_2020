@@ -13,7 +13,7 @@ namespace Oiski.School.Library_H1_2020.Application.UI
     /// <summary>
     /// Defines menu for navigation of <see cref="Book"/> items
     /// </summary>
-    public class BooksItemMenu : ItemMenu<string>
+    public sealed class BooksItemMenu : ItemMenu<string>
     {
         private static BooksItemMenu instance = null;
         public static BooksItemMenu Instance

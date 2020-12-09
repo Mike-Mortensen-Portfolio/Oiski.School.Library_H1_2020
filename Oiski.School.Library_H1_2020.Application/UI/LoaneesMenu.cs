@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Oiski.School.Library_H1_2020.Application.UI
 {
-    public class LoaneesMenu : MasterMenu
+    public sealed class LoaneesMenu : MasterMenu
     {
         private static LoaneesMenu instance = null;
         public static LoaneesMenu Instance
@@ -20,7 +20,9 @@ namespace Oiski.School.Library_H1_2020.Application.UI
                     {
                         LoaneeButtonAction = (s) =>
                         {
-                            throw new NotImplementedException("Missing Navigation class for Loanee Menu!");
+                            instance.ResetSelection();
+                            CreateLoaneeMenu.Instance.GetMenu.Show();
+                            instance.GetMenu.Show(false);
                         },
 
                         FindLoaneeButton = (s) =>

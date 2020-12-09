@@ -13,7 +13,7 @@ namespace Oiski.School.Library_H1_2020.Application.UI
     /// <summary>
     /// Defines menu for navigation of <see cref="Loanee"/> items
     /// </summary>
-    public class LoaneeItemMenu : ItemMenu<int>
+    public sealed class LoaneeItemMenu : ItemMenu<int>
     {
         private static LoaneeItemMenu instance = null;
         public static LoaneeItemMenu Instance

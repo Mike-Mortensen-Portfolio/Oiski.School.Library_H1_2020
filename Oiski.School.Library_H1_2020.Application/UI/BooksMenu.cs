@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Oiski.School.Library_H1_2020.Application.UI
 {
-    public class BooksMenu : MasterMenu
+    public sealed class BooksMenu : MasterMenu
     {
         private static BooksMenu instance = null;
         public static BooksMenu Instance

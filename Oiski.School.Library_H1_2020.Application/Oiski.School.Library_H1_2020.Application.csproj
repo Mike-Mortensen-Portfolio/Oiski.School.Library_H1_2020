@@ -8,7 +8,6 @@
   <ItemGroup>
     <Reference Include="Oiski.ConsoleTech.Engine">
       <HintPath>..\packages\OiskiEngine\Oiski.ConsoleTech.Engine.dll</HintPath>
-      <HintPath>..\OiskiEngine\Oiski.ConsoleTech.Engine.dll</HintPath>
     </Reference>
   </ItemGroup>
 

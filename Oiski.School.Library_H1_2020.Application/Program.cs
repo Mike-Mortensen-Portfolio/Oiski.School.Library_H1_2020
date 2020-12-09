@@ -25,13 +25,7 @@ namespace Oiski.School.Library_H1_2020.Application
             OiskiEngine.Run();
             #endregion
 
-            Library.GetLibrary.CreateBook("The Little Mermaid", "H.C. Andernsen", "34438934", out Book _book);
-            BooksItemMenu.Instance.CurrentItemID = "34438934";
-            BooksItemMenu.Instance.Refresh();
-            BooksItemMenu.Instance.GetMenu.Show();
-
-            //MainMenu.Instance.GetMenu.Show();
-             
+            MainMenu.Instance.GetMenu.Show();          
         }
     }
 }

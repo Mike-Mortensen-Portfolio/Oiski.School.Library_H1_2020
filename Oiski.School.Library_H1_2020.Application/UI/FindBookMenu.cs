@@ -3,6 +3,7 @@ using Oiski.ConsoleTech.Engine.Color.Controls;
 using Oiski.ConsoleTech.Engine.Color.Rendering;
 using Oiski.ConsoleTech.Engine.Controls;
 using Oiski.School.Library_H1_2020.Application.System;
+using Oiski.School.Library_H1_2020.Application.System.Items;
 using Oiski.School.Library_H1_2020.Application.Users;
 using System;
 using System.Collections.Generic;
@@ -10,49 +11,30 @@ using System.Text;
 
 namespace Oiski.School.Library_H1_2020.Application.UI
 {
-    public sealed class FindLoaneeMenu : MasterMenu
+    public sealed class FindBookMenu : MasterMenu
     {
-        private static FindLoaneeMenu instance = null;
-        public static FindLoaneeMenu Instance
+        private static FindBookMenu instance = null;
+        public static FindBookMenu Instance
         {
             get
             {
                 if ( instance == null )
                 {
-                    instance = new FindLoaneeMenu("Find Loanee", 15)
+                    instance = new FindBookMenu("----Find Book----", 15)
                     {
-                        SwitchSearchByButtonAction = (s) =>
-                        {
-                            if ( instance.searchByValue.Text == "Email" )
-                            {
-                                instance.searchByValue.Text = "ID";
-                            }
-                            else
-                            {
-                                instance.searchByValue.Text = "Email";
-                            }
-                        },
-
                         SearchLoaneeButton = (s) =>
                         {
-                            Loanee loanee = null;
-                            if ( instance.searchByValue.Text == "Email" )
+                            Book book = null;
+                            if ( instance.searchByValue.Text == "ISBN Code" )
                             {
-                                loanee = Library.GetLibrary.GetLoanee(instance.searchKeyValue.Text);
-                            }
-                            else
-                            {
-                                if ( int.TryParse(instance.searchKeyValue.Text, out int _id) )
-                                {
-                                    loanee = Library.GetLibrary.GetLoanee(_id);
-                                }
+                                book = Library.GetLibrary.GetBook(instance.searchKeyValue.Text);
                             }
 
-                            if ( loanee != null )
+                            if ( book != null )
                             {
-                                LoaneeItemMenu.Instance.CurrentItemID = loanee.ID;
-                                LoaneeItemMenu.Instance.Refresh();
-                                LoaneeItemMenu.Instance.GetMenu.Show();
+                                BooksItemMenu.Instance.CurrentItemID = book.ISBNCode;
+                                BooksItemMenu.Instance.Refresh();
+                                BooksItemMenu.Instance.GetMenu.Show();
                                 instance.GetMenu.Show(false);
                             }
 
@@ -93,7 +75,7 @@ namespace Oiski.School.Library_H1_2020.Application.UI
             };
             searchByLabel.OnSelect += SwitchSearchByButtonAction;
 
-            searchByValue = new ColorableLabel("Email", ControlsFontColor, ControlsBorderColor, false)
+            searchByValue = new ColorableLabel("ISBN Code", ControlsFontColor, ControlsBorderColor, false)
             {
                 TextColor = new RenderColor(ConsoleColor.Green, ConsoleColor.Black)
             };
@@ -122,18 +104,18 @@ namespace Oiski.School.Library_H1_2020.Application.UI
 
             #region Nav Button Setup
             NavButtonAction = (s) =>
-                {
-                    instance.searchKeyValue.Text = "Type Search key here...";
-                    LoaneesMenu.Instance.GetMenu.Show();
-                    Instance.ResetSelection();
-                    Instance.GetMenu.Show(false);
-                };
+            {
+                instance.searchKeyValue.Text = "Type Search key here...";
+                BooksMenu.Instance.GetMenu.Show();
+                Instance.ResetSelection();
+                Instance.GetMenu.Show(false);
+            };
             #endregion
             SetupNavButton();
             instance.ResetSelection();
         }
 
-        public FindLoaneeMenu (string _headerText, int _headerPosY) : base(_headerText, _headerPosY, "Go back")
+        public FindBookMenu (string _headerText, int _headerPosY) : base(_headerText, _headerPosY, "Go back")
         {
         }
     }

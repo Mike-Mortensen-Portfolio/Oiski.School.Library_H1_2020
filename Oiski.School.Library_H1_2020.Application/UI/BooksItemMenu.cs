@@ -22,13 +22,13 @@ namespace Oiski.School.Library_H1_2020.Application.UI
             {
                 if ( instance == null )
                 {
-                    instance = new BooksItemMenu(15)
+                    instance = new BooksItemMenu(8)
                     {
                         RemoveBookButtonAction = (s) =>
                         {
                             Library.GetLibrary.RemoveBook(instance.CurrentItemID);
                             instance.GetMenu.Show(false);
-                            BooksMenu.Instance.GetMenu.Show();                            
+                            BooksMenu.Instance.GetMenu.Show();
                         },
 
                         BorrowButtonAction = (s) =>
@@ -55,7 +55,13 @@ namespace Oiski.School.Library_H1_2020.Application.UI
         /// The action that is applied when a user selects the Remove Button <see cref="Control"/>
         /// </summary>
         public Action<SelectableControl> RemoveBookButtonAction { get; private set; }
+        /// <summary>
+        /// The action that is applied when a user selects the Return Button <see cref="Control"/>
+        /// </summary>
         public Action<SelectableControl> ReturnBookButtonAction { get; private set; }
+        /// <summary>
+        /// The action that is applied when a user selects the Borrow Button <see cref="Control"/>
+        /// </summary>
         public Action<SelectableControl> BorrowButtonAction { get; private set; }
 
         #region These are the controls that make out the value fields
@@ -74,7 +80,7 @@ namespace Oiski.School.Library_H1_2020.Application.UI
         /// <summary>
         /// Initiate the <see cref="Menu"/> <see cref="Control"/>s. (<strong>NOTE:</strong> should only be called once to avoid duplicate <see cref="Control"/>s)
         /// </summary>
-        public override void InitMenu()
+        public override void InitMenu ()
         {
             base.InitMenu();
 
@@ -199,7 +205,7 @@ namespace Oiski.School.Library_H1_2020.Application.UI
             #region Nav Button Setup
             NavButtonAction = (s) =>
             {
-                LoaneesMenu.Instance.GetMenu.Show();
+                BooksMenu.Instance.GetMenu.Show();
                 ResetSelection();
                 GetMenu.Show(false);
             };
@@ -213,7 +219,7 @@ namespace Oiski.School.Library_H1_2020.Application.UI
         /// <summary>
         /// Refresh the <see cref="Control"/>s contained in the <see cref="Menu"/>
         /// </summary>
-        public void Refresh()
+        public void Refresh ()
         {
             Book book = Library.GetLibrary.GetBook(CurrentItemID.ToString());
 
@@ -268,7 +274,7 @@ namespace Oiski.School.Library_H1_2020.Application.UI
         /// </summary>
         /// <param name="_itemID"></param>
         /// <param name="_headerPosY"></param>
-        private BooksItemMenu(int _headerPosY) : base("Empty", _headerPosY, "Go Back")
+        private BooksItemMenu (int _headerPosY) : base("Empty", _headerPosY, "Go Back")
         {
         }
     }

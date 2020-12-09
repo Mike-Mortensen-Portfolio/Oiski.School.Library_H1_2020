@@ -27,7 +27,9 @@ namespace Oiski.School.Library_H1_2020.Application.UI
 
                         FindBookButton = (s) =>
                         {
-                            throw new NotImplementedException("Missing Navigation class for Find Book Menu!");
+                            instance.ResetSelection();
+                            FindBookMenu.Instance.GetMenu.Show();
+                            instance.GetMenu.Show(false);
                         }
                     };
 

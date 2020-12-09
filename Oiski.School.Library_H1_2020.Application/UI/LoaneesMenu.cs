@@ -27,7 +27,9 @@ namespace Oiski.School.Library_H1_2020.Application.UI
 
                         FindLoaneeButton = (s) =>
                         {
-                            throw new NotImplementedException("Missing Navigation class for Find Loanee Menu!");
+                            instance.ResetSelection();
+                            FindLoaneeMenu.Instance.GetMenu.Show();
+                            instance.GetMenu.Show(false);
                         }
                     };
 

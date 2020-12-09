@@ -31,7 +31,10 @@ namespace Oiski.School.Library_H1_2020.Application.UI
                                 LoaneeItemMenu.Instance.GetMenu.Show();
                                 instance.GetMenu.Show(false);
                             }
-                        },
+
+                            instance.LoaneeNameValue.Text = "Type Name of Loanee...";
+                            instance.LoaneeEmailValue.Text = "Type Email for Loanee...";
+                        }
                     };
 
                     instance.InitMenu();
@@ -100,6 +103,8 @@ namespace Oiski.School.Library_H1_2020.Application.UI
             #region Nav Button Setup
             NavButtonAction = (s) =>
             {
+                instance.LoaneeNameValue.Text = "Type Name of Loanee...";
+                instance.LoaneeEmailValue.Text = "Type Email for Loanee...";
                 LoaneesMenu.Instance.GetMenu.Show();
                 Instance.ResetSelection();
                 Instance.GetMenu.Show(false);

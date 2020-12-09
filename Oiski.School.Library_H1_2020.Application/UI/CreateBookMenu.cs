@@ -32,6 +32,8 @@ namespace Oiski.School.Library_H1_2020.Application.UI
                                 BooksItemMenu.Instance.GetMenu.Show();
                                 instance.GetMenu.Show(false);
                             }
+
+                            instance.TitleValue.Text = "Type Title of Book...";
                         },
                     };
 
@@ -98,7 +100,7 @@ namespace Oiski.School.Library_H1_2020.Application.UI
             #endregion
 
             #region Book ISBN Code Value Field Setup
-            ISBNCodeValue = new ColorableTextField("Type ISBN Code of Book...", ControlsFontColor, ControlsBorderColor, false)
+            ISBNCodeValue = new ColorableTextField("Type ISBN Code For Book...", ControlsFontColor, ControlsBorderColor, false)
             {
                 ResetAfterFirstWrite = true,
                 SelectedIndex = new Vector2(0, 2),
@@ -137,6 +139,14 @@ namespace Oiski.School.Library_H1_2020.Application.UI
             #region Nav Button Setup
             NavButtonAction = (s) =>
             {
+                instance.TitleValue.Text = "Type Title of Book...";
+                instance.TitleValue.EraseTextOnSelect = true;
+                instance.AuthorValue.Text = "Type Author of Book...";
+                instance.AuthorValue.EraseTextOnSelect = true;
+                instance.ISBNCodeValue.Text = "Type ISBN Code For Book...";
+                instance.ISBNCodeValue.EraseTextOnSelect = true;
+                instance.CategoryValue.Text = "Type Category For Book...";
+                instance.CategoryValue.EraseTextOnSelect = true;
                 BooksMenu.Instance.GetMenu.Show();
                 Instance.ResetSelection();
                 Instance.GetMenu.Show(false);

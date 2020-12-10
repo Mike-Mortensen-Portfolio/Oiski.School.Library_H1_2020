@@ -18,6 +18,18 @@ namespace Oiski.School.Library_H1_2020.Application.Users
         /// </summary>
         public static int IDMod { get; private set; }
 
+        public string ToFile()
+        {
+            string borrowedBooks = string.Empty;
+
+            foreach ( Book book in BorrowedBooks )
+            {
+                borrowedBooks += $"{string.Format("{0,10}", book)}";
+            }
+
+            return $"{Name}\n{{\n\tID: {ID}\n\tEmail: {Email}\n}}\nBorrowed Book:\n{borrowedBooks}";
+        }
+
         /// <summary>
         /// Create a new instance of type <see cref="Loanee"/> where <paramref name="_name"/> and <paramref name="_email"/> is set
         /// </summary>
@@ -27,6 +39,8 @@ namespace Oiski.School.Library_H1_2020.Application.Users
         {
             ID = IDMod++;
         }
+
+
 
         /// <summary>
         /// 

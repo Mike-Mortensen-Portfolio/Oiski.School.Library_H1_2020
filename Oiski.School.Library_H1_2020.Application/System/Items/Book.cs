@@ -19,6 +19,11 @@ namespace Oiski.School.Library_H1_2020.Application.System.Items
         public bool IsBorrowed { get; set; } = false;
         public DateTime DateOfLending { get; set; }
 
+        public string ToFile()
+        {
+            return $"{Title},{Author},{ISBNCode},{Category},{IsBorrowed},{DateOfLending.ToShortDateString()}";
+        }
+
         /// <summary>
         /// Creates a new instance of type <see cref="Book"/> where <paramref name="_title"/>, <paramref name="_author"/> and <paramref name="_isbnCode"/> is set
         /// </summary>

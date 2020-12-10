@@ -11,10 +11,10 @@ namespace Oiski.School.Library_H1_2020.Application
 {
     class Program
     {
-        static void Main ()
+        static void Main()
         {
             #region Inital Setup of Console Window and Engine
-            Console.SetWindowSize(100, 50);
+            Console.SetWindowSize(75, 35);
 
             ColorRenderer renderer = new ColorRenderer
             {
@@ -26,6 +26,9 @@ namespace Oiski.School.Library_H1_2020.Application
             #endregion
 
             MainMenu.Instance.GetMenu.Show();
+
+            //Library.GetLibrary.BuildTestData();
+            //Library.GetLibrary.DataToFile();
         }
     }
 }

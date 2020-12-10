@@ -20,7 +20,7 @@ namespace Oiski.School.Library_H1_2020.Application.UI
             {
                 if ( instance == null )
                 {
-                    instance = new FindBookMenu("----Find Book----", 15)
+                    instance = new FindBookMenu("----Find Book----", 10)
                     {
                         SearchLoaneeButton = (s) =>
                         {

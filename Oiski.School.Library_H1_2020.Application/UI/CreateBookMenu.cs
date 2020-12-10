@@ -20,7 +20,7 @@ namespace Oiski.School.Library_H1_2020.Application.UI
             {
                 if ( instance == null )
                 {
-                    instance = new CreateBookMenu("Create Loanee", 15)
+                    instance = new CreateBookMenu("Create Book", 8)
                     {
                         CreateButtonAction = (s) =>
                         {

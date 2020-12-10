@@ -4,6 +4,7 @@ using Oiski.ConsoleTech.Engine.Color.Rendering;
 using Oiski.ConsoleTech.Engine.Controls;
 using Oiski.School.Library_H1_2020.Application.System;
 using Oiski.School.Library_H1_2020.Application.System.Items;
+using Oiski.School.Library_H1_2020.Application.Users;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -22,7 +23,7 @@ namespace Oiski.School.Library_H1_2020.Application.UI
             {
                 if ( instance == null )
                 {
-                    instance = new BooksItemMenu(8)
+                    instance = new BooksItemMenu(0)
                     {
                         RemoveBookButtonAction = (s) =>
                         {
@@ -33,14 +34,23 @@ namespace Oiski.School.Library_H1_2020.Application.UI
 
                         BorrowButtonAction = (s) =>
                         {
-                            Library.GetLibrary.BorrowBook(instance.CurrentItemID);
-                            instance.Refresh();
+                            Loanee loanee = Library.GetLibrary.GetLoanee(instance.loaneeEmail.Text);
+                            if ( loanee != null )
+                            {
+                                Library.GetLibrary.BorrowBook(loanee, instance.CurrentItemID);
+                                instance.Refresh();
+                                instance.loaneeEmail.EraseTextOnSelect = true;
+                            }
                         },
 
                         ReturnBookButtonAction = (s) =>
                         {
-                            Library.GetLibrary.ReturnBook(instance.CurrentItemID);
-                            instance.Refresh();
+                            Loanee loanee = Library.GetLibrary.GetLoanee(instance.loaneeEmail.Text);
+                            if ( loanee != null && loanee.BorrowedBooks.Find(book => book.ISBNCode == instance.CurrentItemID) != null )
+                            {
+                                Library.GetLibrary.ReturnBook(instance.CurrentItemID);
+                                instance.Refresh();
+                            }
                         }
                     };
 
@@ -75,12 +85,13 @@ namespace Oiski.School.Library_H1_2020.Application.UI
         private ColorableLabel statusText;
         private ColorableLabel dolLabel;
         private ColorableLabel dolText; //  Displays the day of which the book was borrowed
+        private ColorableTextField loaneeEmail;
         #endregion
 
         /// <summary>
         /// Initiate the <see cref="Menu"/> <see cref="Control"/>s. (<strong>NOTE:</strong> should only be called once to avoid duplicate <see cref="Control"/>s)
         /// </summary>
-        public override void InitMenu ()
+        public override void InitMenu()
         {
             base.InitMenu();
 
@@ -172,18 +183,29 @@ namespace Oiski.School.Library_H1_2020.Application.UI
             #region Borrow Book Button
             ColorableOption borrowButton = new ColorableOption("Borrow Book", ControlsFontColor, ControlsBorderColor, false)
             {
-                SelectedIndex = Vector2.Zero
+                SelectedIndex = new Vector2(0, 1)
             };
 
             borrowButton.Position = new Vector2(Vector2.CenterX(borrowButton.Size.x), dolText.Position.y + 3);
             borrowButton.OnSelect += BorrowButtonAction;
+
+            loaneeEmail = new ColorableTextField("Type Loanee Email Here...", ControlsFontColor, ControlsBorderColor, false)
+            {
+                EraseTextOnSelect = true,
+                ResetAfterFirstWrite = true,
+                SelectedIndex = Vector2.Zero,
+                TextColor = new RenderColor(ConsoleColor.Green, ConsoleColor.Black)
+            };
+            loaneeEmail.Position = new Vector2(borrowButton.Position.x + borrowButton.Size.x + 1, borrowButton.Position.y + 2);
+
             GetMenu.Controls.AddControl(borrowButton);
+            GetMenu.Controls.AddControl(loaneeEmail);
             #endregion
 
             #region Return Book Button
             ColorableOption returnButton = new ColorableOption("Return Book", ControlsFontColor, ControlsBorderColor, false)
             {
-                SelectedIndex = new Vector2(0, 1)
+                SelectedIndex = new Vector2(0, 2)
             };
 
             returnButton.Position = new Vector2(Vector2.CenterX(returnButton.Size.x), borrowButton.Position.y + 3);
@@ -194,7 +216,7 @@ namespace Oiski.School.Library_H1_2020.Application.UI
             #region Remove Button Setup
             ColorableOption removeButton = new ColorableOption("Remove Book", ControlsFontColor, ControlsBorderColor, false)
             {
-                SelectedIndex = new Vector2(0, 2)
+                SelectedIndex = new Vector2(0, 3)
             };
 
             removeButton.Position = new Vector2(Vector2.CenterX(removeButton.Size.x), returnButton.Position.y + 3);
@@ -208,6 +230,8 @@ namespace Oiski.School.Library_H1_2020.Application.UI
                 BooksMenu.Instance.GetMenu.Show();
                 ResetSelection();
                 GetMenu.Show(false);
+                instance.loaneeEmail.Text = "Type Loanee Email Here...";
+                instance.loaneeEmail.EraseTextOnSelect = true;
             };
 
             SetupNavButton();
@@ -219,7 +243,7 @@ namespace Oiski.School.Library_H1_2020.Application.UI
         /// <summary>
         /// Refresh the <see cref="Control"/>s contained in the <see cref="Menu"/>
         /// </summary>
-        public void Refresh ()
+        public void Refresh()
         {
             Book book = Library.GetLibrary.GetBook(CurrentItemID.ToString());
 
@@ -274,7 +298,7 @@ namespace Oiski.School.Library_H1_2020.Application.UI
         /// </summary>
         /// <param name="_itemID"></param>
         /// <param name="_headerPosY"></param>
-        private BooksItemMenu (int _headerPosY) : base("Empty", _headerPosY, "Go Back")
+        private BooksItemMenu(int _headerPosY) : base("Empty", _headerPosY, "Go Back")
         {
         }
     }

@@ -20,7 +20,7 @@ namespace Oiski.School.Library_H1_2020.Application.UI
             {
                 if ( instance == null )
                 {
-                    instance = new MainMenu("-----Oiski's Library-----", 15)
+                    instance = new MainMenu("-----Oiski's Library-----", 10)
                     {
                         LoaneesButtonAction = (s) =>
                         {

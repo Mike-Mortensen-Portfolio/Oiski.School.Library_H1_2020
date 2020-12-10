@@ -49,6 +49,7 @@ namespace Oiski.School.Library_H1_2020.Application.UI
             Header = new ColorableLabel(HeaderText, ControlsFontColor, ControlsBorderColor, false);
             Header.Position = new Vector2(Vector2.CenterX(Header.Size.x), HeaderPosY);
             GetMenu.Controls.AddControl(Header);
+            Header.TextColor = new RenderColor(ConsoleColor.Magenta, ConsoleColor.Black);
             #endregion
 
             #region Nav Button Setup

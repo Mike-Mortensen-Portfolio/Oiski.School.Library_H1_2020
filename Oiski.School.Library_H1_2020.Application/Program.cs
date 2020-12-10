@@ -11,7 +11,7 @@ namespace Oiski.School.Library_H1_2020.Application
 {
     class Program
     {
-        static void Main()
+        static void Main ()
         {
             #region Inital Setup of Console Window and Engine
             Console.SetWindowSize(75, 35);
@@ -27,8 +27,8 @@ namespace Oiski.School.Library_H1_2020.Application
 
             MainMenu.Instance.GetMenu.Show();
 
-            //Library.GetLibrary.BuildTestData();
-            //Library.GetLibrary.DataToFile();
+            //  Tests Calls
+            Library.GetLibrary.BuildTestData();
         }
     }
 }

@@ -19,6 +19,10 @@ namespace Oiski.School.Library_H1_2020.Application.System.Items
         public bool IsBorrowed { get; set; } = false;
         public DateTime DateOfLending { get; set; }
 
+        /// <summary>
+        /// Prepares the <see cref="Book"/> <see langword="object"/> for file print
+        /// </summary>
+        /// <returns>A <see langword="string"/> formatted for file storage</returns>
         public string ToFile()
         {
             return $"{Title},{Author},{ISBNCode},{Category},{IsBorrowed},{DateOfLending.ToShortDateString()}";

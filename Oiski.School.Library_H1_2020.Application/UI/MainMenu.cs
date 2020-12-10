@@ -5,6 +5,7 @@ using Oiski.ConsoleTech.Engine;
 using Oiski.ConsoleTech.Engine.Color.Controls;
 using Oiski.ConsoleTech.Engine.Color.Rendering;
 using Oiski.ConsoleTech.Engine.Controls;
+using Oiski.School.Library_H1_2020.Application.System;
 
 namespace Oiski.School.Library_H1_2020.Application.UI
 {
@@ -34,6 +35,11 @@ namespace Oiski.School.Library_H1_2020.Application.UI
                             BooksMenu.Instance.GetMenu.Show();
                             Instance.ResetSelection();
                             Instance.GetMenu.Show(false);
+                        },
+
+                        PrintAllDataButtonAction = (s) =>
+                        {
+                            Library.GetLibrary.DataToFile();
                         }
                     };
 
@@ -52,8 +58,12 @@ namespace Oiski.School.Library_H1_2020.Application.UI
         /// The action that is applied when a user selects the books button 
         /// </summary>
         public Action<SelectableControl> BookButtonAction { get; private set; }
+        /// <summary>
+        /// The action that is applied when a user selects the Print All button 
+        /// </summary>
+        public Action<SelectableControl> PrintAllDataButtonAction { get; private set; }
 
-        public override void InitMenu()
+        public override void InitMenu ()
         {
             base.InitMenu();
             #region Loanees Button
@@ -73,6 +83,14 @@ namespace Oiski.School.Library_H1_2020.Application.UI
             GetMenu.Controls.AddControl(booksButton);
             #endregion
 
+            #region Print All Button
+            ColorableOption printAll = new ColorableOption("Print All Data", ControlsFontColor, ControlsBorderColor, false);
+            printAll.Position = new Vector2(Vector2.CenterX(printAll.Size.x), booksButton.Position.y + 3);
+            printAll.SelectedIndex = new Vector2(0, 2);
+            printAll.OnSelect += PrintAllDataButtonAction;
+            GetMenu.Controls.AddControl(printAll);
+            #endregion 
+
             #region Nav Button Setup
             NavButtonAction = (s) =>
             {
@@ -88,7 +106,7 @@ namespace Oiski.School.Library_H1_2020.Application.UI
         /// </summary>
         /// <param name="_headerText"></param>
         /// <param name="_headerPosY"></param>
-        private MainMenu(string _headerText, int _headerPosY) : base(_headerText, _headerPosY, "Close")
+        private MainMenu (string _headerText, int _headerPosY) : base(_headerText, _headerPosY, "Close")
         {
 
         }

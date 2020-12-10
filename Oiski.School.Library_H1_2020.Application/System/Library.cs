@@ -44,7 +44,7 @@ namespace Oiski.School.Library_H1_2020.Application.System
 
             for ( int i = 0; i < 10; i++ )
             {
-                CreateBook($"Book {i}", $"Bailando Jensen", "Nonsense", $"ISBN123456{i}", out Book _book);
+                CreateBook($"Book {i}", $"Bailando Jensen", "Nonsense", $"ISBN{i}", out Book _book);
                 books.Add(_book);
             }
         }
@@ -57,14 +57,14 @@ namespace Oiski.School.Library_H1_2020.Application.System
             using ( StreamWriter file = new StreamWriter($"{path}\\LibraryData.txt") )
             {
                 file.WriteLine(GetData());
-                file.WriteLine("Loanees:");
+                file.WriteLine("--------------------------------Loanees--------------------------------");
 
                 foreach ( Loanee loanee in loanees )
                 {
                     file.WriteLine(loanee.ToFile());
                 }
 
-                file.WriteLine("Books:");
+                file.WriteLine("--------------------------------Books--------------------------------");
                 foreach ( Book book in books )
                 {
                     file.WriteLine(book.ToFile());

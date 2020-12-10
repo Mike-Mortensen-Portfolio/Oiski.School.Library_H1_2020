@@ -18,16 +18,20 @@ namespace Oiski.School.Library_H1_2020.Application.Users
         /// </summary>
         public static int IDMod { get; private set; }
 
-        public string ToFile()
+        /// <summary>
+        /// Prepares the <see cref="Loanee"/> <see langword="object"/> for file print
+        /// </summary>
+        /// <returns>A <see langword="string"/> formatted for file storage</returns>
+        public string ToFile ()
         {
             string borrowedBooks = string.Empty;
 
             foreach ( Book book in BorrowedBooks )
             {
-                borrowedBooks += $"{string.Format("{0,10}", book)}";
+                borrowedBooks += $"\t\t{book.ToFile()}";
             }
 
-            return $"{Name}\n{{\n\tID: {ID}\n\tEmail: {Email}\n}}\nBorrowed Book:\n{borrowedBooks}";
+            return $"{Name}\n{{\n\tID: {ID}\n\tEmail: {Email}\n\tBorrowed Book:\n{borrowedBooks}}}\n";
         }
 
         /// <summary>
@@ -35,18 +39,16 @@ namespace Oiski.School.Library_H1_2020.Application.Users
         /// </summary>
         /// <param name="_name"></param>
         /// <param name="_email"></param>
-        public Loanee(string _name, string _email) : base(_name, _email)
+        public Loanee (string _name, string _email) : base(_name, _email)
         {
             ID = IDMod++;
         }
-
-
 
         /// <summary>
         /// 
         /// </summary>
         /// <returns>A Formated string containing information about the <see cref="Loanee"/></returns>
-        public override string ToString()
+        public override string ToString ()
         {
             return $"{base.ToString()}{Environment.NewLine}{ID}";
         }

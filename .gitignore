@@ -348,5 +348,3 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
-/OiskiEngine/Oiski.ConsoleTech.Engine.dll
-/OiskiEngine/Oiski.ConsoleTech.Engine.xml
